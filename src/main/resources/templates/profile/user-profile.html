@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="layouts/fragments/header"></head>
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul th:replace="layouts/fragments/sidebar"></ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav th:replace="layouts/fragments/nav"></nav>
+            <!-- End of Topbar -->
+
+            <div class="container-fluid">
+
+                <div class="container-xl px-4 mt-4">
+                    <div class="row">
+<!--                        <div class="col-xl-4">-->
+<!--                            &lt;!&ndash; Profile picture card&ndash;&gt;-->
+<!--                            <div class="card mb-4 mb-xl-0">-->
+<!--                                <div class="card-header">Profile Picture</div>-->
+<!--                                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img-->
+<!--                                        class="rounded-circle mt-5" width="150px"-->
+<!--                                        src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span-->
+<!--                                        class="font-weight-bold">Edogaru</span>-->
+<!--                                    &lt;!&ndash;                            <span class="text-black-50">edogaru@mail.com.my</span><span> </span>&ndash;&gt;-->
+<!--                                </div>-->
+<!--                                <div class="card-body text-center">-->
+<!--                                    &lt;!&ndash; Profile picture image&ndash;&gt;-->
+<!--                                    <img class="img-account-profile rounded-circle mb-2" src="assets/img/illustrations/profiles/profile-1.png" alt="">-->
+<!--                                    &lt;!&ndash; Profile picture help block&ndash;&gt;-->
+<!--                                    <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>-->
+<!--                                    <div>-->
+<!--                                        <input type="file" id="uploadProfile" onchange="uploadProfile()" name="profilePic" placeholder="">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <div class="col-xl-12">
+                            <!-- Account details card-->
+                            <div class="card mb-4">
+                                <div class="card-header">Account Details</div>
+                                <div class="card-body">
+                                    <form>
+                                        <!-- Form Row-->
+                                        <div class="row gx-3 mb-3">
+                                            <!-- Form Group (first name)-->
+                                            <div class="col-md-6">
+                                                <label class="small mb-1" for="inputFirstName">First name</label>
+                                                <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" value="">
+                                            </div>
+                                            <!-- Form Group (last name)-->
+                                            <div class="col-md-6">
+                                                <label class="small mb-1" for="inputLastName">Last name</label>
+                                                <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" value="">
+                                            </div>
+                                        </div>
+                                        <div class="row gx-3 mb-3">
+                                            <!-- Form Group (first name)-->
+                                            <div class="col-md-6">
+                                                <label class="small mb-1" for="inputEmailAddress">Email address</label>
+                                                <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" value="name@example.com">
+                                            </div>
+                                            <!-- Form Group (last name)-->
+                                            <div class="col-md-6">
+                                                <label class="small mb-1" for="inputMobile">Mobile</label>
+                                                <input class="form-control" id="inputMobile" type="text" placeholder="Enter your mobile number" value="">
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Add more form groups as needed for other fields -->
+                                        <button class="btn btn-primary" type="button" id="update">Save changes</button>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+        <!-- End of Content Wrapper -->
+        <footer th:replace="layouts/fragments/footer"></footer>
+
+    </div>
+</div>
+<!-- End of Page Wrapper -->
+
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="/js/sb-admin-2.min.js"></script>
+
+<!-- Page level plugins -->
+<script src="vendor/chart.js/Chart.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="js/demo/chart-area-demo.js"></script>
+<script src="js/demo/chart-pie-demo.js"></script>
+<script>
+    $(document).delegate('#upload_files','click',function () {
+        let headers = null;
+        var formData_1= new FormData();
+        let uploadFileEle = document.getElementById("uploadProfile").value;
+        formData_1.append('type', 'PROFILE_PIC')
+        formData_1.append('file',uploadFileEle);
+        console.log('Form Dara', formData_1);
+        const url = prodUrl +`/settings/upload`;
+        var xhr = new XMLHttpRequest();
+        var strFileType = formData_1;
+        if (strFileType === "" || strFileType === undefined || strFileType === null) {
+            strFileType = "application/octet-stream";
+        }
+        // strFileType = strFileType.replace('/', '47;');
+        xhr.open('POST', url, false);
+
+        xhr.upload.onprogress = function (e) {
+            if (e.lengthComputable) {
+                console.log("e", e)
+                //progressBar.value = (e.loaded / e.total) * 100;
+                //progressBar.textContent = progressBar.value; // Fallback.
+            }
+        };
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log('Upload',xhr.response);
+            }
+            if (xhr.readyState === 4 && xhr.status === 500) {
+                console.log('Upload',JSON.parse(xhr.response));
+            }
+        };
+        xhr.error = function (e) {
+            alert(e);
+        }
+//        xhr.withCredentials = true;
+        xhr.send(formData_1);
+    })
+
+    $(document).ready(function () {
+        getUserDetails();
+    });
+
+    function uploadProfile() {
+        let headers = null;
+        var formData_1= new FormData();
+        let uploadFileEle = document.getElementById("uploadProfile").files[0];
+        formData_1.append('file', uploadFileEle);
+        console.log('Form Dara', formData_1);
+        const url = prodUrl +`/settings/upload`;
+        var xhr = new XMLHttpRequest();
+        var strFileType = formData_1;
+        if (strFileType === "" || strFileType === undefined || strFileType === null) {
+            strFileType = "application/octet-stream";
+        }
+        xhr.open('POST', url, false);
+        xhr.setRequestHeader('Authorization','Bearer ' + localStorage.getItem('access_token'));
+
+        xhr.upload.onprogress = function (e) {
+            if (e.lengthComputable) {
+                console.log("e", e)
+                //progressBar.value = (e.loaded / e.total) * 100;
+                //progressBar.textContent = progressBar.value; // Fallback.
+            }
+        };
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log('Upload',xhr.response);
+            }
+            if (xhr.readyState === 4 && xhr.status === 500) {
+                console.log('Upload',JSON.parse(xhr.response));
+            }
+        };
+        xhr.error = function (e) {
+            alert(e);
+        }
+        xhr.send(formData_1);
+    }
+
+   function getUserDetails() {
+    console.log('first');
+    let headers = null;
+    const url = prodUrl + `/me`;
+    console.log("document loaded");
+    if (!headers) {
+        headers = {}
+    }
+    $.ajax({
+        url: url,
+        type: "GET",
+        headers: {
+            headers,
+            Authorization: 'Bearer ' + localStorage.getItem('access_token')
+        },
+        success: function (res) {
+            console.log(res);
+            document.getElementById('inputFirstName').value = res.firstName || '';
+            document.getElementById('inputLastName').value = res.lastName || '';
+            document.getElementById('inputEmailAddress').value = res.email || '';
+            document.getElementById('inputMobile').value = res.mobile || '';
+
+            localStorage.setItem('userName', res.firstName + ' ' + res.lastName || 'User Name');
+            localStorage.setItem('firstName', res.firstName || '');
+            localStorage.setItem('lastName', res.lastName || '');
+            localStorage.setItem('role', res.role || '');
+
+            $('#userNameSpan').html((res.firstName + ' ' + res.lastName) || 'User Name');
+        },
+    });
+}
+
+
+    $(document).delegate('#update', 'click', function () {
+    const headers = {
+        Authorization: 'Bearer ' + localStorage.getItem('access_token')
+    };
+
+    const url = prodUrl + `/employees`;
+
+    const firstName = $('#inputFirstName').val() || '';
+    const lastName = $('#inputLastName').val() || '';
+    const email = $('#inputEmailAddress').val() || '';
+    const mobile = $('#inputMobile').val() || '';
+
+    const payload = {
+        id: 'string',
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        mobile: mobile,
+    };
+
+    $.ajax({
+        url: url,
+        type: "PUT",
+        data: JSON.stringify(payload),
+        headers: headers,
+        contentType: "application/json",
+        success: function (res) {
+            alert("Profile Updated Successfully");
+            location.reload();
+        },
+        error: function (error) {
+            console.error(error);
+            // Handle the error response here
+        }
+    });
+});
+
+    $(document).delegate('#save', 'click', function () {
+        let headers = null;
+        const url = prodUrl +`/admin/users`;
+
+
+        // add assoc key values, this will be posts values
+        formData.append("file", this.file, this.getName());
+        formData.append("upload_file", true);
+        const formData = {
+            name: document.getElementById('exampleFirstName').value + ' ' + document.getElementById('exampleLastName').value,
+            email: document.getElementById('exampleInputEmail').value
+        }
+
+        if (!headers) {
+            headers = {}
+        }
+
+        console.log('FormData', formData);
+        // api.post(url,formData,function (result) {
+        //     console.log('Result', result);
+        //     document.getElementById('T001').close();
+        // })
+        $.ajax({
+            type: "POST",
+            url: "script",
+            xhr: function () {
+                var myXhr = $.ajaxSettings.xhr();
+                if (myXhr.upload) {
+                    myXhr.upload.addEventListener('progress', that.progressHandling, false);
+                }
+                return myXhr;
+            },
+            success: function (data) {
+                // your callback here
+            },
+            error: function (error) {
+                // handle error
+            },
+            async: true,
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            timeout: 60000
+        });
+    });
+</script>
+
+</body>
+
+</html>

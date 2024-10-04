@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="layouts/fragments/header"></head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul th:replace="layouts/fragments/sidebar"></ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav th:replace="layouts/fragments/nav"></nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Load Management</h1>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#ADD001"><i
+                            class="fas fa-plus-circle fa-md text-white-50"></i> Add New Load
+                    </button>
+
+                </div>
+
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="loadTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th>Load Number</th>
+                                    <th>Container Number</th>
+                                    <th>Ship From</th>
+                                    <th>Ship To</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="myLoadTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th>Load Number</th>
+                                    <th>Container Number</th>
+                                    <th>Ship From</th>
+                                    <th>Ship To</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+        <footer th:replace="layouts/fragments/footer"></footer>
+
+    </div>
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+<div class="modal fade" id="VIEW001" tabindex="-1" aria-labelledby="exampleViewModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleViewModalLabel">Load Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xl-8">
+                        <!-- Account details card-->
+                        <div class="row">
+                            <div class="card mb-4">
+                                <div class="card-header d-flex mr-5">Load Details:
+                                    <div class="justify-content-center ml-5 mt-0 d-flex" id="loadId"></div>
+                                </div>
+
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-md-4">-->
+<!--                                            Load Name-->
+<!--                                        </div>-->
+<!--                                        <div class="col-md-4" id="loadName"></div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">Customer Details</div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                Customer Name
+                                            </div>
+                                            <div class="col-md-4" id="customerName"></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                Customer Mobile
+                                            </div>
+                                            <div class="col-md-4" id="customerMobile"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">Driver Details</div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                Driver Name
+                                            </div>
+                                            <div class="col-md-4" id="driverName"></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                Driver Mobile
+                                            </div>
+                                            <div class="col-md-4" id="driverMobile"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">First</th>
+                                    <th scope="col">Last</th>
+                                    <th scope="col">Handle</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ADD001" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleAddModalLabel">Add New Load</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loadForm">
+<!--                        <div class="form-group row">-->
+<!--                            <div class="col-sm-12 mb-3 mb-sm-0">-->
+<!--                                <label>Load Details</label>-->
+<!--                                <input type="text" class="form-control form-control-user"-->
+<!--                                       id="inputAddLoadName"-->
+<!--                                       placeholder="Load Details">-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label>Ship From</label>
+                                <input type="text" class="form-control form-control-user"
+                                       id="inputAddShipFrom"
+                                       placeholder="Ship From">
+                            </div>
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label>Ship To</label>
+                                <input type="text" class="form-control form-control-user"
+                                       id="inputAddShipTo"
+                                       placeholder="Ship To">
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label>Ship From Time</label>
+                                <input type="datetime-local" class="form-control form-control-user"
+                                       id="inputAddShipFromTime"
+                                       placeholder="Ship From Time">
+                            </div>
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label>Ship To Time</label>
+                                <input type="datetime-local" class="form-control form-control-user"
+                                       id="inputAddShipToTime"
+                                       placeholder="Ship To Time">
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label>Container Number</label>
+                                <input type="text" class="form-control form-control-user"
+                                       id="inputContainerNumberAdd"
+                                       placeholder="Container Number">
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Company Name</label>
+                                <input type="text" class="form-control form-control-user"
+                                       id="inputCompanyNameAdd"
+                                       placeholder="Company/Institution Name">
+                            </div>
+
+                        </div>
+
+                        <br>
+                        <div class="form-group row">
+
+                            <div class="col-sm-6">
+                                <label>Select Customer</label>
+                                <select class="form-select customer-list" aria-label="Default select example"
+                                        id="inputAddCustomerName">
+                                    <option selected>Select Customer</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Select Driver</label>
+                                <select class="form-select driver-list" aria-label="Default select example"
+                                        id="inputAddDriverName">
+                                    <option selected>Select Driver</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="type" id="inputAddOtr"
+                                           value="OTR">
+                                    <label class="form-check-label" for="inputAddOtr">OTR</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="type" id="inputAddDrayage"
+                                           value="DRAYAGE">
+                                    <label class="form-check-label" for="inputAddDrayage">Drayage</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="save" class="btn btn-primary">Send To Approve</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="EDIT001" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Load</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="update-load-form">
+                        <div class="form-group row">
+<!--                            <div class="col-sm-6 mb-3 mb-sm-0">-->
+<!--                                <label>Load Name</label>-->
+<!--                                <input type="text" class="form-control form-control-user"-->
+<!--                                       id="inputLoadName"-->
+<!--                                       placeholder="Load Name" readonly>-->
+<!--                            </div>-->
+                            <div class="col-sm-6">
+                                <label>Load Number</label>
+                                <input type="text" class="form-control form-control-user"
+                                       id="inputLoadId"
+                                       placeholder="Load Name" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label>Container Number</label>
+                                <input type="text" class="form-control form-control-user"
+                                       id="inputEditContainerNumber"
+                                       placeholder="Container Number">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group row field_wrapper">
+                            <div class="col-md-6">
+                                <div class="row mb-2">
+                                    <h5 class="modal-title text-center bg-light my-2 col-12">Customer Rate</h5>
+                                    <div class="col-4">
+                                        <input type="text" name="customer-key[]" class="form-control form-control-user"
+                                               placeholder="key">
+                                    </div>
+                                    <div class="col-4">
+                                        <input class="form-control form-control-user" name="customer-rate[]"
+                                               placeholder="value"
+                                               type="number">
+                                    </div>
+                                    <a class="btn btn-primary col-sm-2 add_button" href="javascript:void(0);"
+                                       title="Add field"><i
+                                            class="fas fa-plus-circle fa-md text-white-50"></i>Add</a>
+                                </div>
+                                <div id="field_wrapper"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row mb-2">
+                                    <h5 class="modal-title text-center bg-light my-2 col-12">Driver Rate</h5>
+                                    <div class="col-sm-4">
+                                        <input type="text" name="driver-key[]" class="form-control form-control-user"
+                                               placeholder="key">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <input class="form-control form-control-user" id="supplier_value"
+                                               placeholder="value" name="driver-rate[]" type="number">
+                                    </div>
+                                    <a class="btn btn-primary col-sm-2 add_button_2" href="javascript:void(0);"
+                                       title="Add field"><i
+                                            class="fas fa-plus-circle fa-md text-white-50"></i>Add</a>
+                                </div>
+                                <div id="field_wrapper_2"></div>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="form-group row field_wrapper">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <select multiple id="document-list" class="form-control form-control-user">
+                                        <option value="BOL">Bill Of Loading</option>
+                                        <option value="DO">Delivery Order</option>
+                                        <option value="CARRIER_RATE">Carrier Rate</option>
+                                        <option value="SHIPPER_RATE">Shipper Rate</option>
+                                        <option value="REVISED_CARRIER_RATE">Revised Carrier Rate</option>
+                                        <option value="REVISED_SHIPPER_RATE">Revised Shipper Rate</option>
+                                        <option value="LINEHOLD">Line Hold</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <select id="inputStatus" class="form-control form-control-user">
+                                        <option value="DRAFT">DRAFT</option>
+                                        <option value="INPROGRESS">In Progress</option>
+                                        <option value="COMPLETED">Complete</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                    </button>
+                    <button type="submit" id="update" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="NOTE001" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleCommentModalLabel">Comments</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form>
+                        <div class="form-group">
+                            <label for="inputComment">Example textarea</label>
+                            <textarea class="form-control" id="inputComment" rows="3"></textarea>
+                        </div>
+                        <button type="button" id="add-note" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+                <div class="row">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="loadCommentTable" width="100%" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+
+                                <th>Comments</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="/js/sb-admin-2.min.js"></script>
+
+<!-- Page level plugins -->
+<script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<script>
+let getLoadId = '';
+let loadId = '';
+let elementPublicId = '';
+
+$(function() {
+
+  getCustomerList();
+  getDriverList();
+
+  const role = localStorage.getItem('role');
+  const $myLoadTable = $("#myLoadTable");
+  const $loadTable = $("#loadTable");
+
+  role === "ADMIN" ? $myLoadTable.hide() : $loadTable.hide();
+
+  role === "ADMIN" ? getLoads() : getMyLoads();
+
+  const $wrapper = $('#field_wrapper');
+  const $wrapper2 = $('#field_wrapper_2');
+  const $addButton = $('.add_button, .add_button_2');
+  const $addSupplierButton = $('.add_supplier_button');
+  const fieldHTML = `
+    <div class="row mb-2">
+      <div class="col-4">
+        <input type="text" name="customer-key[]" class="form-control form-control-user" placeholder="key">
+      </div>
+      <div class="col-4">
+        <input class="form-control form-control-user" name="customer-rate[]" placeholder="value" type="number">
+      </div>
+      <a href="javascript:void(0);" class="btn btn-primary col-sm-2 remove_button" title="Add field">
+        <i class="fas fa-remove-circle fa-md text-white-50"></i>Remove
+      </a>
+    </div>`;
+  const fieldHTML2 = `
+    <div class="row mb-2">
+      <div class="col-4">
+        <input type="text" name="driver-key[]" class="form-control form-control-user" placeholder="key">
+      </div>
+      <div class="col-4">
+        <input class="form-control form-control-user" placeholder="value" name="driver-rate[]" type="number">
+      </div>
+      <a href="javascript:void(0);" class="btn btn-primary col-sm-2 remove_button_2" title="Add field">
+        <i class="fas fa-remove-circle fa-md text-white-50"></i>Remove
+      </a>
+    </div>`;
+
+  const maxField = 10; // Input fields increment limitation
+  let x = 1; // Initial field counter is 1
+
+  $addButton.click(function() {
+    if (x < maxField) {
+      x++;
+      $(this).hasClass('add_button') ? $wrapper.append(fieldHTML) : $wrapper2.append(fieldHTML2);
+    }
+  });
+
+  $addSupplierButton.click(function() {
+    if (x < maxField) {
+      x++;
+      $wrapper.append(fieldHTML);
+    }
+  });
+
+  $wrapper.on('click', '.remove_button', function(e) {
+    e.preventDefault();
+    $(this).parent().remove();
+    x--;
+  });
+
+  $wrapper2.on('click', '.remove_button_2', function(e) {
+    e.preventDefault();
+    $(this).parent().remove();
+    x--;
+  });
+});
+
+
+
+
+
+function myFunction(value, index, array) {
+    var option = $('<option/>');
+    option.attr({ 'value': value.id }).text(value.customerName);
+    $('.customer-list').append(option);
+}
+function myFunction1(value, index, array) {
+    var option = $('<option/>');
+    option.attr({ 'value': value.id }).text(value.driverName);
+    $('.driver-list').append(option);
+}
+
+    function getCustomerList() {
+        let headers = null;
+        const url = prodUrl + "/customers";
+        if (!headers) {
+            headers = {}
+        }
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataSrc: 'responseData',
+            headers: {
+                headers,
+                Authorization: 'Bearer ' + localStorage.getItem('access_token')
+            },
+            success: function (res) {
+                res.forEach(myFunction);
+                if (res.length > 0) {
+                    $("#save").prop("disabled", false);
+                } else {
+                    alert("Please add a customer first before creating a new load.");
+                    $("#save").prop("disabled", true);
+                }
+            },
+        })
+    }
+
+    function getDriverList() {
+        let headers = null;
+        const url = prodUrl + "/drivers";
+        if (!headers) {
+            headers = {}
+        }
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataSrc: 'responseData',
+            headers: {
+                headers,
+                Authorization: 'Bearer ' + localStorage.getItem('access_token')
+            },
+            success: function (res) {
+                res.forEach(myFunction1);
+            },
+        })
+    }
+
+
+    function getLoads() {
+        let headers = null;
+        if (!headers) {
+            headers = {}
+        }
+        let t = $('#loadTable').DataTable();
+        t.clear();
+        $.ajax({
+            url: prodUrl + `/admin/loads`,
+            type: "GET",
+            dataSrc: 'responseData',
+            headers: {
+                headers,
+                Authorization: 'Bearer ' + localStorage.getItem('access_token')
+            },
+            success: function (res) {
+                let t = $('#loadTable').DataTable();
+                new Date().toLocaleString();
+                res.map(response => {
+                    t.row.add([response.publicId, response.carrierNumber, response.locations[0].shipFrom,response.locations[0].shipTo, response.status,
+                        '<div class="d-flex gap-2 align-items-center"><button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" id="' + response.id + '" data-bs-target="#EDIT001" onclick="getLoadDetails(this)">' +
+                        '<i class="fas fa-edit fa-sm text-white-50"></i></button><button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"\n' +
+                        '                                                data-bs-target="#NOTE001" id="' + response.id + '" onclick="getNotes(this)">\n' +
+                        '                                            <i class="fas fa-eye fa-sm text-white-50"></i>\n' +
+                        '                                        </button><div class="dropdown"><button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"> <i class="fas fa-download fa-sm text-white-50"></i></button><ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1"><li><a class="dropdown-item" id="' + response.id + '" onclick="customerRateConfirmation(this)" href="#">Customer Rate</a></li><li><a class="dropdown-item" id="' + response.id + '" onclick="driverRateConfirmation(this)" href="#">Driver Rate</a></li><li><a class="dropdown-item" id="' + response.id + '" onclick="downloadInvoice(this)" href="#">Invoice</a></li></ul></div></div>']).draw(false)
+
+                })
+            },
+
+            columns: [
+                {data: 'Public Id'},
+                {data: 'First Name'},
+                {data: 'First Name'},
+                {data: 'First Name'},
+                {data: 'First Name'},
+                {data: 'First Name'},
+                {data: 'First Name'},
+                {data: 'First Name'},
+                {data: 'Email'}
+            ],
+        })
+    }
+
+    function getNotes(event) {
+        var id = event.id;
+        loadId = id;
+        let headers = null;
+        let t = $('#loadCommentTable').DataTable();
+        t.clear();
+        if (!headers) {
+            headers = {}
+        }
+        $.ajax({
+            url: prodUrl + `/channel/${id}/notes`,
+            type: "GET",
+            dataSrc: 'responseData',
+            headers: {
+                headers,
+                Authorization: 'Bearer ' + localStorage.getItem('access_token')
+            },
+            success: function (res) {
+                let t = $('#loadCommentTable').DataTable();
+                res.map(response => {
+                    t.row.add([response.id, response.description,
+                        '<button type="button" class="btn btn-primary" id="' + response.id + '" onclick="deleteNote(this)">\n' +
+                        '                                            <i class="fas fa-eye fa-sm text-white-50"></i>Note\n' +
+                        '                                        </button>']).draw(false)
+
+                })
+            },
+
+            columns: [
+                {data: 'Public Id'},
+                {data: 'Description'},
+                {data: 'Email'}
+            ],
+        })
+    }
+
+    function getMyLoads() {
+        let headers = null;
+        const url = prodUrl + "/loads";
+        if (!headers) {
+            headers = {}
+        }
+        let t = $('#myLoadTable').DataTable();
+        t.clear();
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataSrc: 'responseData',
+            headers: {
+                headers,
+                Authorization: 'Bearer ' + localStorage.getItem('access_token')
+            },
+            success: function (res) {
+                let t = $('#myLoadTable').DataTable();
+                new Date().toLocaleString();
+                res.map(response => {
+                    t.row.add([response.publicId, response.carrierNumber, response.locations[0].shipFrom,response.locations[0].shipTo, response.status,
+                        '<div class="d-flex gap-2 align-items-center"><button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" id="' + response.id + '" data-bs-target="#EDIT001" onclick="getLoadDetails(this)">' +
+                        '<i class="fas fa-edit fa-sm text-white-50"></i></button><button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"\n' +
+                        '                                                data-bs-target="#NOTE001" id="' + response.id + '" onclick="getNotes(this)">\n' +
+                        '                                            <i class="fas fa-eye fa-sm text-white-50"></i>\n' +
+                        '                                        </button><div class="dropdown"><button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></button><ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1"><li><a class="dropdown-item" id="' + response.id + '" onclick="customerRateConfirmation(this)" href="#">Customer Rate</a></li><li><a class="dropdown-item" id="' + response.id + '" onclick="driverRateConfirmation(this)" href="#">Driver Rate</a></li><li><a class="dropdown-item" id="' + response.id + '" onclick="downloadInvoice(this)" href="#">Invoice</a></li></ul></div></div>']).draw(false)
+
+                })
+            },
+
+            columns: [
+                {data: 'Public Id'},
+                {data: 'First Name'},
+                {data: 'First Name'},
+                {data: 'First Name'},
+                {data: 'First Name'},
+                {data: 'First Name'},
+                {data: 'First Name'},
+                {data: 'First Name'},
+                {data: 'Email'}
+            ],
+        })
+    }
+
+    const $wrapper = $('#field_wrapper');
+const $wrapper2 = $('#field_wrapper_2');
+
+function getLoadDetails(event) {
+  const loadId = event.id;
+  const url = `${prodUrl}/loads/${loadId}`;
+  const headers = {
+    Authorization: 'Bearer ' + localStorage.getItem('access_token')
+  };
+
+  $.ajax({
+    url: url,
+    type: "GET",
+    headers: headers,
+    success: function (res) {
+      getLoadId = res.id;
+
+      $('#inputLoadId').val(res.publicId);
+      $('#inputEditContainerNumber').val(res.carrierNumber);
+      $('#inputStatus').val(res.status || "INPROGRESS");
+      $('#loadId').text(res.publicId);
+
+      // Display customer rate
+      if (res.customerRate && res.customerRate.length > 0) {
+        res.customerRate.forEach(rate => {
+          const customerRateHTML = `
+            <div class="row mb-2">
+              <div class="col-4">
+                <input type="text" class="form-control form-control-user" name="customer-key[]" value="${rate.label}" disabled>
+              </div>
+              <div class="col-4">
+                <input class="form-control form-control-user" name="customer-rate[]" value="${rate.amount}" disabled>
+              </div>
+              <a href="javascript:void(0);" class="btn btn-primary col-sm-2 remove_button" title="Remove field">
+                <i class="fas fa-remove-circle fa-md text-white-50"></i>Remove
+              </a>
+            </div>
+          `;
+          $wrapper.append(customerRateHTML);
+        });
+      }
+
+      // Display driver rate
+      if (res.driverRate && res.driverRate.length > 0) {
+        res.driverRate.forEach(rate => {
+          const driverRateHTML = `
+            <div class="row mb-2">
+              <div class="col-4">
+                <input type="text" class="form-control form-control-user" name="driver-key[]" value="${rate.label}" disabled>
+              </div>
+              <div class="col-4">
+                <input class="form-control form-control-user" name="driver-rate[]" value="${rate.amount}" disabled>
+              </div>
+              <a href="javascript:void(0);" class="btn btn-primary col-sm-2 remove_button_2" title="Remove field">
+                <i class="fas fa-remove-circle fa-md text-white-50"></i>Remove
+              </a>
+            </div>
+          `;
+          $wrapper2.append(driverRateHTML);
+        });
+      }
+    },
+    error: function (error) {
+      console.error(error);
+    }
+  });
+}
+
+
+    $(document).on('click','#save', function () {
+        let headers = null;
+        const locationsList = [];
+        var locationInput = {
+            shipFrom: document.getElementById('inputAddShipFrom').value,
+            shipTo: document.getElementById('inputAddShipTo').value,
+            shipFromDate: document.getElementById('inputAddShipFromTime').value,
+            shipToDate: document.getElementById('inputAddShipToTime').value,
+        }
+        var channelType = $('input[name="type"]:checked').val();
+        locationsList.push(locationInput)
+        const formData = {
+<!--            name: document.getElementById('inputAddLoadName').value,-->
+            customerId: document.getElementById('inputAddCustomerName').value,
+            driverId: document.getElementById('inputAddDriverName').value,
+            carrierNumber: document.getElementById('inputContainerNumberAdd').value,
+            status: "DRAFT",
+            locations: locationsList,
+            type: channelType
+        }
+
+        if (!headers) {
+            headers = {}
+        }
+        $.ajax({
+            url: prodUrl + `/loads`,
+            data: JSON.stringify(formData),
+            headers: {
+                headers,
+                Authorization: 'Bearer ' + localStorage.getItem('access_token')
+            },
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            success: function () {
+                $('#ADD001').modal('hide');
+                const role = localStorage.getItem('role');
+                if (role === "ADMIN") {
+                    getLoads();
+                } else {
+                    getMyLoads();
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                if (XMLHttpRequest.status === 401 || XMLHttpRequest.status === 403) {
+                    // api.logout();
+                    console.log('Error');
+                    // $('#employeeForm').reset();
+                    // document.getElementById("employeeForm").reset();
+                }
+            },
+        });
+    });
+
+
+   $('#update').click(function() {
+  const url = prodUrl + `/loads/${getLoadId}`;
+  const customerRates = [];
+  const driverRates = [];
+
+  $('input[name="customer-key[]"]').each(function(index) {
+    const key = $(this).val().trim();
+    const amount = $('input[name="customer-rate[]"]').eq(index).val().trim();
+
+    if (key !== '' && amount !== '') {
+      customerRates.push({
+        label: key,
+        amount: amount,
+        type: 'CUSTOMER'
+      });
+    }
+  });
+
+  $('input[name="driver-key[]"]').each(function(index) {
+    const key = $(this).val().trim();
+    const amount = $('input[name="driver-rate[]"]').eq(index).val().trim();
+
+    if (key !== '' && amount !== '') {
+      driverRates.push({
+        label: key,
+        amount: amount,
+        type: 'DRIVER'
+      });
+    }
+  });
+
+  const formData = {
+<!--    name: $('#inputLoadName').val() || '',-->
+    customerRate: customerRates.length > 0 ? customerRates : null,
+    driverRate: driverRates.length > 0 ? driverRates : null,
+    carrierNumber: $('#inputEditContainerNumber').val(),
+    status: $('#inputStatus').val()
+  };
+
+
+  $.ajax({
+    url: url,
+    data: JSON.stringify(formData),
+    headers: {
+      Authorization: 'Bearer ' + localStorage.getItem('access_token')
+    },
+    type: 'PUT',
+    dataType: 'json',
+    contentType: 'application/json;charset=utf-8',
+    success: function() {
+      location.reload();
+      $('#EDIT001').modal('hide');
+      getLoads();
+    },
+    error: function(XMLHttpRequest, textStatus, errorThrown) {
+      if (XMLHttpRequest.status === 401 || XMLHttpRequest.status === 403) {
+        console.log('Error');
+      }
+    }
+  });
+});
+
+    $(document).on('click','#add-note', function () {
+        let headers = null;
+        const url = prodUrl + `/channels/${loadId}/note`;
+        var note = $("#inputComment").val();
+        const formData = {
+            description: document.getElementById('inputComment').value,
+        }
+
+        if (!headers) {
+            headers = {}
+        }
+
+        $.ajax({
+            url: url,
+            data: JSON.stringify(formData),
+            headers: {
+                headers,
+                Authorization: 'Bearer ' + localStorage.getItem('access_token')
+            },
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            success: function () {
+            location.reload();
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                if (XMLHttpRequest.status === 401 || XMLHttpRequest.status === 403) {
+                    console.log('Error');
+                }
+            },
+        });
+    });
+
+    function deleteNote(event) {
+            id = event.id;
+            let headers = null;
+            if (!headers) {
+                headers = {}
+            }
+            $.ajax({
+                url: prodUrl + `/notes/${id}`,
+                type: "DELETE",
+                dataSrc: 'responseData',
+                headers: {
+                    headers,
+                    Authorization: 'Bearer ' + localStorage.getItem('access_token')
+                },
+                success: function (res) {
+                location.reload();
+                }
+            });
+        }
+
+
+    function customerRateConfirmation(event){
+    var id = event.id;
+
+    fileName = 'customer-rate-confirmation.pdf';
+
+        let headers = null;
+        if (!headers) {
+            headers = {}
+        }
+        $.ajax({
+            url: prodUrl + `/loads/${id}/rate-conformation?type=CUSTOMER`,
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            cache: false,
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+                headers,
+            },
+            xhrFields: {
+                responseType: 'blob'
+            },
+            success: function (data) {
+                console.log("Data :", data)
+                const a = document.createElement('a');
+                const _url = window.URL.createObjectURL(data);
+                a.href = _url;
+                a.download = `${fileName}`;
+                document.body.append(a);
+                a.click();
+                a.remove();
+                window.URL.revokeObjectURL(url);
+            },
+            error: function (error) {
+                console.log("Errors : ", error)
+            }
+        });
+    };
+
+        function driverRateConfirmation(event){
+    var id = event.id;
+
+    fileName = 'customer-rate-confirmation.pdf';
+
+        let headers = null;
+        if (!headers) {
+            headers = {}
+        }
+        $.ajax({
+            url: prodUrl + `/loads/${id}/rate-conformation?type=DRIVER`,
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            cache: false,
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+                headers,
+            },
+            xhrFields: {
+                responseType: 'blob'
+            },
+            success: function (data) {
+                console.log("Data :", data)
+                const a = document.createElement('a');
+                const _url = window.URL.createObjectURL(data);
+                a.href = _url;
+                a.download = `${fileName}`;
+                document.body.append(a);
+                a.click();
+                a.remove();
+                window.URL.revokeObjectURL(url);
+            },
+            error: function (error) {
+                console.log("Errors : ", error)
+            }
+        });
+    };
+        function downloadInvoice(event){
+    fileName = 'invoice.pdf';
+    var id = event.id;
+
+        let headers = null;
+        if (!headers) {
+            headers = {}
+        }
+        $.ajax({
+            url: prodUrl + `/loads/${id}/invoice`,
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            cache: false,
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+                headers,
+            },
+            xhrFields: {
+                responseType: 'blob'
+            },
+            success: function (data) {
+                console.log("Data :", data)
+                const a = document.createElement('a');
+                const _url = window.URL.createObjectURL(data);
+                a.href = _url;
+                a.download = `${fileName}`;
+                document.body.append(a);
+                a.click();
+                a.remove();
+                window.URL.revokeObjectURL(url);
+            },
+            error: function (error) {
+                console.log("Errors : ", error)
+            }
+        });
+    };
+</script>
+<!-- Page level custom scripts -->
+<script src="/js/demo/datatables-demo.js"></script>
+
+</body>
+
+</html>

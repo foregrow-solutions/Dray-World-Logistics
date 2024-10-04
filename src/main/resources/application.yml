@@ -1,0 +1,76 @@
+spring:
+#  profiles:
+#    active: "local"
+  application:
+    name: acl-portal
+
+  datasource:
+#    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://database-1.cxmkadt3cuqf.ap-south-1.rds.amazonaws.com:3306/dw_logistics?useUnicode=true&characterEncoding=UTF-8&createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: admin
+    password: password
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 5
+
+  jpa:
+    show-sql: true
+    open-in-view: false
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+      use-new-id-generator-mappings: true
+    properties:
+      #        javax.persistence.sharedCache.mode: ENABLE_SELECTIVE
+      hibernate:
+        #Hibernate Full Text search
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        type: trace
+        dialect.storage_engine: innodb
+      hibernate.search:
+        backend:
+          type: lucene
+          lucene_version: LATEST
+          analysis.configurer: luceneAnalysisConfiguration
+          directory.root: opt/indexes
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, prometheus, scheduledtasks
+
+server:
+#  port: 8090
+  forward-headers-strategy: framework
+  error:
+    include-message: always
+  http2:
+    enabled: true
+  tomcat:
+    threads:
+      max: 5
+      min-spare: 1
+  #ssl:
+    #key-store: classpath:springboot.jks
+    #key-store-password: password
+    #key-alias: springboot
+    #key-password: password
+
+common:
+  converter:
+    destination-dir: /converted/
+
+security:
+  jwt:
+    tokenIssuer: https://acl.com
+    tokenSigningKey: dev-secret-key-to-be-used-should-be-512-bit-at-least-otherwise-it-will-just-fail
+    tokenExpirationTime: 30 # Minutes
+
+
